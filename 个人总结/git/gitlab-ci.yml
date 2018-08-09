@@ -16,15 +16,6 @@ sonar_preview:
   tags:
     - shared
 
-auto_test:
-  stage: deploy
-  script: 
-    - ci/auto_test.sh
-  except:
-    - master
-  tags:
-    - shared
-
 sonar_analyze:
   stage: deploy
   script:
