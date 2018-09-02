@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+规则版本号：V1.5(2008-12-02)
+修改规则WhitespaceAround"，属性tokens的值去掉WILDCARD_TYPE。
+
+规则版本号：V1.4(2008-09-27)
+去掉规则HideUtilityClassConstructor
+规则WhitespaceAround，增加属性
+
+
+规则版本号：V1.3(2008-09-18)
+增加规则(共22个)：AnonInnerLength、MethodParamPad、NoWhitespaceAfter、NoWhitespaceBefore、OperatorWrap、ParenPad、
+TypecastParenPad、TabCharacter、WhitespaceAround、HiddenField、MagicNumber、RedundantThrows、NestedTryDepth、
+IllegalThrows、DeclarationOrder、UnnecessaryParentheses、VisibilityModifier、HideUtilityClassConstructor、
+ThrowsCount、BooleanExpressionComplexity、UncommentedMain、Indentation
+
+规则版本号：V1.2（2008-08-19）
+修改了规则JavadocStyle，对html标签不作是否关闭的检查，原因是对JDK1.5的泛型类会误认为是html标签
+
+规则版本号：V1.1（2008-08-13）
+常量命名（ConstantName）对日志对象可以命名为log或logger，不需要全部大写
+
+规则版本号：V1.0（2008-08-11）
+本规则重在编程规范，请与PMD、FindBugs结合使用
+-->
+<!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.2//EN" "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
+<module name="Checker">
+    <!--
+    Javadoc Comments1
+    -->
+    <!--module name="PackageHtml"/-->
+
+    <module name="TreeWalker">
+
+    <!--
+    Javadoc Comments2
+    -->
+        <module name="JavadocType"/>
+        <module name="JavadocMethod">
+            <property name="scope" value="protected"/>
+            <property name="allowMissingPropertyJavadoc" value="true"/>
+            <property name="logLoadErrors" value="true"/>
+            <property name="suppressLoadErrors" value="true"/>
+            <property name="allowMissingThrowsTags" value="true"/>
+        </module>
+        <module name="JavadocVariable">
+            <property name="scope" value="public"/>
+        </module>
+        <module name="JavadocStyle">
+           <property name="checkFirstSentence" value="false"/>
+           <property name="checkEmptyJavadoc" value="true"/>
+           <property name="checkHtml" value="false"/>
+        </module>
+        <!--<module name="WriteTag">
+           <property name="tag" value="@author,@param,@return"/>
+        </module> -->
+
+    <!--
+    Naming Conventions
+    -->
+        <module name="ConstantName">
+           <property name="format" value="(^[A-Z][A-Z0-9]*(_([A-Z0-9]+))*$)|(^log$)|(^logger$)"/>
+        </module>
+        <module name="LocalFinalVariableName">
+           <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+        </module>
+        <module name="LocalVariableName">
+           <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+        </module>
+        <module name="MemberName">
+           <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+        </module>
+        <module name="MethodName">
+           <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+        </module>
+        <module name="PackageName">
+           <property name="format" value="^[a-z]+(\.[a-zA-Z_][a-zA-Z0-9_]*)*$"/>
+        </module>
+        <module name="ParameterName">
+           <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+        </module>
+        <module name="StaticVariableName">
+           <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+        </module>
+        <module name="TypeName">
+           <property name="format" value="^[A-Z][a-zA-Z0-9]*$"/>
+        </module>
+           
+    <!--
+    import
+    -->
+        <module name="AvoidStarImport"/>
+        <module name="RedundantImport"/>
+        <!--module name="UnusedImports"/-->
+
+    <!--
+    Size Violations
+    -->
+        <!--module name="LineLength">
+            <property name="max" value="80"/>
+        </module-->
+        <module name="AnonInnerLength">
+            <property name="max" value="60"/>
+        </module>
+        
+    <!--
+    Whitespace
+    -->              
+        <module name="MethodParamPad"/>
+        <module name="NoWhitespaceAfter"/>
+        <module name="NoWhitespaceBefore"/>
+        <module name="OperatorWrap"/>  
+        <module name="ParenPad"/>
+        <module name="TypecastParenPad"/>
+        <!--module name="TabCharacter"/-->
+        <module name="WhitespaceAround">
+            <property name="tokens" value="COLON,NOT_EQUAL,QUESTION,DIV,DIV_ASSIGN,BXOR,BXOR_ASSIGN,MINUS,LCURLY,RCURLY,STAR,STAR_ASSIGN,TYPE_EXTENSION_AND,BAND,LAND,BAND_ASSIGN,MOD,MOD_ASSIGN,PLUS,PLUS_ASSIGN,LT,SL,SL_ASSIGN,LE,ASSIGN,MINUS_ASSIGN,EQUAL,GT,GE,SR,SR_ASSIGN,BSR,BSR_ASSIGN,BOR,BOR_ASSIGN,LOR,LITERAL_ASSERT,LITERAL_ASSERT,LITERAL_CATCH,LITERAL_DO,LITERAL_ELSE,LITERAL_FINALLY,LITERAL_FOR,LITERAL_IF,LITERAL_RETURN,SLIST,LITERAL_SYNCHRONIZED,LITERAL_TRY,LITERAL_WHILE"/>
+        </module>
+        
+    <!--
+    Modifiers
+    -->
+        <module name="ModifierOrder"/>
+        
+    <!--
+    Block Checks
+    -->
+        <module name="EmptyBlock"/>
+        <!--module name="LeftCurly">
+            <property name="option" value="nl"/>
+        </module-->
+        <module name="NeedBraces"/>
+        <!--module name="RightCurly">
+            <property name="option" value="alone"/>
+        </module-->
+        <module name="AvoidNestedBlocks">
+            <property name="allowInSwitchCase" value="true"/>
+        </module>
+        
+    <!--
+    Coding
+    -->  
+        <module name="HiddenField">
+            <property name="ignoreConstructorParameter" value="true"/>
+            <property name="ignoreSetter" value="true"/>
+            <property name="ignoreAbstractMethods" value="true"/>
+        </module>
+        <module name="MagicNumber">
+        	  <property name="tokens" value="NUM_DOUBLE, NUM_FLOAT, NUM_LONG"/>
+            <property name="ignoreNumbers" value="-1, 0, 1"/>
+        </module>
+        <!--module name="RedundantThrows">
+            <property name="logLoadErrors" value="true"/>
+            <property name="suppressLoadErrors" value="true"/>
+        </module-->
+        <module name="NestedTryDepth">
+            <property name="max" value="2"/>
+        </module>
+        <module name="IllegalThrows"/>
+        <module name="DeclarationOrder"/>
+        <module name="UnnecessaryParentheses"/>
+        
+    <!--
+    Class Design
+    -->        
+        <!--module name="VisibilityModifier">
+            <property name="packageAllowed" value="true"/>
+            <property name="protectedAllowed" value="true"/>
+            <property name="publicMemberPattern" value="^$"/>
+        </module-->
+        <!--<module name="HideUtilityClassConstructor"/>    -->       
+        <module name="ThrowsCount">
+            <property name="max" value="3"/>
+        </module> 
+
+        
+    <!--
+    Metrics
+    -->      
+        <module name="BooleanExpressionComplexity">
+            <property name="max" value="5"/>
+        </module>
+        
+    <!--   
+    Miscellaneous  
+    -->
+        <!--module name="Indentation"/-->
+        <module name="UncommentedMain"/>
+     
+    </module>
+</module>
